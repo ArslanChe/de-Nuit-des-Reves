@@ -16,4 +16,5 @@ public class Egg : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
