@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class EnemyHealth : MonoBehaviour
 {
     public int health = 10;
-    private int currentHealth = 0;
-    private int damageTaken = 0;
+    private float currentHealth = 0;
+    private float damageTaken = 0;
     
     public GameObject bossManager = null;
     
@@ -35,7 +35,11 @@ public class EnemyHealth : MonoBehaviour
         return damageTaken;
     }
 
-    public void TakeDamage(int amount){
+    public void TakeDamage(float amount){
+        if (PerkManager.Instance != null)
+        {
+            amount *= PerkManager.Instance.damageMultiplier;
+        }
         currentHealth -= amount;
         damageTaken += amount;
         StartCoroutine(FlashWhite());
@@ -50,8 +54,9 @@ public class EnemyHealth : MonoBehaviour
                 stars.Play();
             }
             FindObjectOfType<PlayerStateManager>().GetComponent<Health>().DisableDamage();
-            FindObjectOfType<VictoryManager>().ShowVictory();
+            FindObjectOfType<VictoryMenu>().ShowVictory();
         }
+        Debug.Log(currentHealth);
     }
     
     private IEnumerator FlashWhite(){

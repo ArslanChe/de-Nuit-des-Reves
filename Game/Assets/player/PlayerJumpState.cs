@@ -18,7 +18,7 @@ public class PlayerJumpState : State
   
     public override void Enter()
     {
-        context.rigidbody2D.linearDamping = 2f; // чем больше — тем короче полёт
+        context.rigidbody2D.linearDamping = 2f; 
 
         context.animator.SetBool("isGrounded", false);
         context.rigidbody2D.linearVelocity = new Vector2(context.rigidbody2D.linearVelocity.x, context.jumpForce);
@@ -43,7 +43,14 @@ public class PlayerJumpState : State
         context.animator.SetBool("isGrounded", false);
     }
 
-    public override void OnJump(){
+    public override void OnJump()
+    {
+        if (context.canDoubleJump && !context.hasDoubleJumped)
+        {
+            context.rigidbody2D.linearVelocity = new Vector2(context.rigidbody2D.linearVelocity.x, context.jumpForce);
+            context.hasDoubleJumped = true;
+            context.animator.SetTrigger("jump");
+        }
     }
 
     public override Quaternion getTargetRotation(){

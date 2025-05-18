@@ -17,7 +17,6 @@ public class BossController : MonoBehaviour
 
     public void FireLaser()
     {
-        Debug.Log("FireLaser");
         animator.SetTrigger("att_lower");
     }
 

@@ -25,6 +25,10 @@ public class Health : MonoBehaviour{
 
     private void Start() {
         animator = GetComponent<Animator>();
+        if (PerkManager.Instance != null)
+        {
+            health += PerkManager.Instance.extraHp;
+        }
         OnPlayerHealthChange.Invoke(health);
     }
 
@@ -33,23 +37,28 @@ public class Health : MonoBehaviour{
         
         health -= 1;
         OnPlayerHealthChange.Invoke(health);
+        Debug.Log(health);
+
         // animator.SetTrigger("hit");
         if (health <= 0){
+            if (PerkManager.Instance.canRevive)
+            {
+                health = 1;
+                PerkManager.Instance.canRevive = false;
+                OnPlayerHealthChange.Invoke(health);
+                return;
+            }
             collider2D.enabled = false;
             animator.SetTrigger("death");
-            FindObjectOfType<GameOverManager>().ShowGameOver();
+            GameStatsManager.AddDeath();
+            PlayerPrefs.Save();
+            FindObjectOfType<GameOverMenu>().ShowGameOver();
 
         } else {
             Invulnerability();
         }
     }
-
-    void OnTriggerEnter2D(Collider2D other) {
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if (enemy != null && health > 0){
-            takeDamage();
-        }
-    }
+    
 
     public void finishHit(){
         // animator.ResetTrigger("hit");
@@ -75,4 +84,5 @@ public class Health : MonoBehaviour{
             yield return new WaitForSeconds(0.1f);
         }
     }
+
 }

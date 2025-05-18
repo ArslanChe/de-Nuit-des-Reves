@@ -38,19 +38,17 @@ public class PlayerCrouchState : State
         return Quaternion.Euler(0, context.transform.rotation.eulerAngles.y, 0);
     }
     bool OneWayPlatformCheck(){
-        Vector3 start = context.transform.position;
-        Vector3 dir = Vector3.down;
-        Debug.DrawRay(start, dir, Color.red, 2f);
+        Vector2 start = context.transform.position;
+        Vector2 dir = Vector2.down;
 
-        RaycastHit2D linecast = Physics2D.Linecast(start, start + dir, 1 << LayerMask.NameToLayer("Ground"));
-        if(linecast.collider != null && linecast.collider.CompareTag("OneWayPlatform")){
-            Debug.Log(linecast.collider);
-            context.FallOneWayPlatform(linecast.collider);
-            if(linecast.point.y < start.y){
-                context.collider2D.enabled = false;
-                return true;
-            }
+        RaycastHit2D hit = Physics2D.Raycast(start, dir, 1f, LayerMask.GetMask("Ground")); 
+
+        if (hit.collider != null && hit.collider.CompareTag("OneWayPlatform"))
+        {
+            context.FallOneWayPlatform(hit.collider);
+            return true;
         }
+
         return false;
     }
 }

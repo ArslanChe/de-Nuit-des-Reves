@@ -28,7 +28,7 @@ public class PlayerGroundState : State
 
     public override void Exit()
     {
-        context.animator.SetBool("isGrounded", false);
+        // context.animator.SetBool("isGrounded", false);
     }
 
     public override Quaternion getTargetRotation(){

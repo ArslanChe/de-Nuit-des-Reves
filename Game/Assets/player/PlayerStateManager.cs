@@ -5,11 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    public float jumpForce = 19.3f;
-    public float dashForce = 10f;
-    public float airSpeed = 7f;
+    public float jumpForce = 20.3f;
+    public float dashForce = 12f;
+    public float airSpeed = 6f;
     public float groundSpeed = 6f;
-
+    public float dashCooldown = 1f; 
+    private float lastDashTime = -Mathf.Infinity;
+    private bool hasDashedInAir = false;
+    public bool canDoubleJump = false;
+    public bool hasDoubleJumped = false;
+    
     public State groundState {get; private set;}
     public State crouchState {get; private set;}
     public State jumpState {get; private set;}
@@ -21,7 +26,7 @@ public class PlayerStateManager : MonoBehaviour
     public Animator animator {get; private set;}
     public Transform transform {get; private set;}
     
-    public PlayerWeapon playerWeapon {get; private set;}
+    public PlayerWeaponManager playerWeaponManager {get; private set;}
 
     public Collider2D groundCollider;
     public float move {get; set;}
@@ -51,8 +56,10 @@ public class PlayerStateManager : MonoBehaviour
         collider2D = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         transform = GetComponent<Transform>();
-        playerWeapon = GetComponentInChildren<PlayerWeapon>();
+        playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
         playerInput = GetComponent<PlayerInput>();
+        
+        animator.SetInteger("AttackType",PlayerPrefs.GetInt("SelectedWeaponIndex"));
         
     }
 
@@ -61,10 +68,16 @@ public class PlayerStateManager : MonoBehaviour
         move = 0;
         targetXaxis = 0;
         targetYaxis = 0;
-        
+
         isGrounded = true;
         isDashing = false;
         isShooting = false;
+        if (PerkManager.Instance != null)
+        {
+            groundSpeed *= PerkManager.Instance.speedMultiplier;
+            airSpeed *= PerkManager.Instance.speedMultiplier;
+            canDoubleJump = PerkManager.Instance.doubleJumpUnlocked;
+        }
         
         direction = Direction.Right;
         currentState = groundState; 
@@ -79,7 +92,9 @@ public class PlayerStateManager : MonoBehaviour
         currentState.UpdateState();
         Shoot();
     }
+   
 
+    
     public void Init(){
         playerInput.ActivateInput();
     }
@@ -89,14 +104,16 @@ public class PlayerStateManager : MonoBehaviour
         currentState.Enter();
     }
 
-    public void FallOneWayPlatform(Collider2D platformCollider){
+    public void FallOneWayPlatform(Collider2D platformCollider)
+    {
         StartCoroutine(StartFallOneWayPlatform(platformCollider));
     }
 
-    public IEnumerator StartFallOneWayPlatform(Collider2D platformCollider){
-        Physics2D.IgnoreCollision(groundCollider, platformCollider, true);
-        yield return new WaitForSeconds(1f);
-        Physics2D.IgnoreCollision(groundCollider, platformCollider, false);
+    private IEnumerator StartFallOneWayPlatform(Collider2D platformCollider)
+    {
+        Physics2D.IgnoreCollision(this.groundCollider, platformCollider, true);
+        yield return new WaitForSeconds(0.3f); 
+        Physics2D.IgnoreCollision(this.groundCollider, platformCollider, false);
     }
 
 
@@ -109,6 +126,8 @@ public class PlayerStateManager : MonoBehaviour
                 if (contact.normal.y > 0.5f) 
                 {
                     isGrounded = true;
+                    hasDashedInAir = false;
+                    hasDoubleJumped = false;
                     return;
                 }
             }
@@ -131,19 +150,38 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     public void OnDash(){
-        StartCoroutine(Dash());
+        if (Time.time < lastDashTime + dashCooldown || isDashing)
+            return;
+        if (currentState == crouchState)
+            return;
+        if (isGrounded)
+        {
+            StartCoroutine(Dash());
+            hasDashedInAir = false;
+            lastDashTime = Time.time;
+        }
+        else if (!hasDashedInAir)
+        {
+            StartCoroutine(Dash());
+            hasDashedInAir = true;
+            lastDashTime = Time.time;
+        }
     }
 
     public void OnShoot(InputValue value){
-        animator.SetBool("isShooting", value.isPressed);
         isShooting = value.isPressed;
     }
 
-    public void Shoot(){
-        if(isShooting && !isDashing){
-            playerWeapon.Shoot(currentState.getTargetRotation());
-        } else{
-            playerWeapon.StopShooting();
+    public void Shoot()
+    {
+        if (isShooting && !isDashing && playerWeaponManager != null)
+        {
+            playerWeaponManager.Shoot(currentState.getTargetRotation());
+        }
+        else
+        {
+            
+            playerWeaponManager.StopShooting();
         }
     }
 

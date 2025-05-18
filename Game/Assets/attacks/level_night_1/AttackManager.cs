@@ -13,7 +13,7 @@ public class AttackManager : MonoBehaviour
     [Header("Fly")] public GameObject flyPrefab;
     public Transform[] flySpawnPoint;
 
-    [Header("Fly Paths (по 1 для каждой мухи)")]
+    [Header("Fly Paths ")]
     public FlyPathGroup[] flyPaths;
 
     [Header("Spears")] public SpearAttack[] spears;
@@ -68,7 +68,7 @@ public class AttackManager : MonoBehaviour
 
     void UpdatePhase()
     {
-        if (!phase2Activated && enemyHealth.GetHealth() <= 250)
+        if (!phase2Activated && enemyHealth.GetHealth() <= 500)
         {
             phase2Activated = true;
             Debug.Log("Фаза 2");
