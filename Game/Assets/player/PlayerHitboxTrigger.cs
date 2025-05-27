@@ -6,7 +6,7 @@ public class PlayerHitboxTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if (enemy != null && health.getHealth() > 0){
+        if (enemy != null && enemy.enabled && health.getHealth() > 0){
             health.takeDamage();
         }
     }

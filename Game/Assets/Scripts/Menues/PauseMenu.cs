@@ -21,8 +21,6 @@ public class PauseMenu : MonoBehaviour
         pauseGameMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
-        if (playerInput != null)
-            playerInput.DeactivateInput();
     }
 
     public void Resume()
@@ -41,6 +39,6 @@ public class PauseMenu : MonoBehaviour
     public void LoadLevelMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main Menu"); 
+        SceneManager.LoadScene("Main menu"); 
     }
 }

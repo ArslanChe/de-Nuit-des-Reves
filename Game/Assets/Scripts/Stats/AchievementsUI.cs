@@ -6,8 +6,8 @@ public class AchievementsUI : MonoBehaviour
     [System.Serializable]
     public class AchievementIcon
     {
-        public string levelName;       // Например: "Level 11", "Level 12"
-        public Image icon;             // Сюда перетаскиваем картинку
+        public string levelName;       
+        public Image icon;             
     }
 
     public AchievementIcon[] achievements;

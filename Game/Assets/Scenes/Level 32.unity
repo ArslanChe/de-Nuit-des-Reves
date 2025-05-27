@@ -631,11 +631,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 219477754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71eb2ecac8932cb42bf35a904576565c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c96fba9cae12bc459933e962e57fd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pauseGameMenu: {fileID: 219477754}
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 1407809127}
 --- !u!1 &220317892
 GameObject:
   m_ObjectHideFlags: 0
@@ -5685,10 +5685,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2115309148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71eb2ecac8932cb42bf35a904576565c, type: 3}
+  m_Script: {fileID: 11500000, guid: d8582321285ab6148ac02f35ba27ead2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseGameMenu: {fileID: 2115309148}
+  gameOverCanvas: {fileID: 2115309148}
   playerInput: {fileID: 1407809127}
 --- !u!224 &2115309150
 RectTransform:

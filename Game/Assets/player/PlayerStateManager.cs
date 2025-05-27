@@ -14,6 +14,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool hasDashedInAir = false;
     public bool canDoubleJump = false;
     public bool hasDoubleJumped = false;
+    public bool isControlInverted = false;
     
     public State groundState {get; private set;}
     public State crouchState {get; private set;}
@@ -58,7 +59,7 @@ public class PlayerStateManager : MonoBehaviour
         transform = GetComponent<Transform>();
         playerWeaponManager = GetComponentInChildren<PlayerWeaponManager>();
         playerInput = GetComponent<PlayerInput>();
-        
+        // animator.SetInteger("AttackType",0);
         animator.SetInteger("AttackType",PlayerPrefs.GetInt("SelectedWeaponIndex"));
         
     }
@@ -134,22 +135,46 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
+    
+    public void OnMove(InputValue value)
+    {
+        Vector2 input = value.Get<Vector2>();
 
+        if (isControlInverted)
+        {
+            input.x *= -1;
+            input.y *= -1;
+        }
 
-    public void OnMove(InputValue value){
-        move = value.Get<Vector2>().x;
-        targetXaxis = value.Get<Vector2>().x;
-        targetYaxis = value.Get<Vector2>().y;
+        move = input.x;
+        targetXaxis = input.x;
+        targetYaxis = input.y;
+
         animator.SetFloat("speed", Mathf.Abs(move));
         animator.SetFloat("targetYaxis", targetYaxis);
+
         Flip(move);
     }
-   
     public void OnJump(){
-        currentState.OnJump();
+        if (isControlInverted)
+            PerformDash();
+        else
+            PerformJump();
     }
 
     public void OnDash(){
+        if (isControlInverted)
+            PerformJump();
+        else
+            PerformDash();
+    }
+    private void PerformJump()
+    {
+        currentState.OnJump();
+    }
+
+    private void PerformDash()
+    {
         if (Time.time < lastDashTime + dashCooldown || isDashing)
             return;
         if (currentState == crouchState)

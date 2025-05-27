@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1ce90f30350b7ba4fb57d47e487bdcc7
+guid: 0da1c00b3ee22d74b9284b2d41a7f74a
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -959,7 +959,41 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      orange_ball_0: 3142277778963153320
+      orange_ball_1: -1090907362265011625
+      orange_ball_10: -367442525149815962
+      orange_ball_11: 7451452180488916367
+      orange_ball_12: 3271256261591406932
+      orange_ball_13: 2193839099414241987
+      orange_ball_14: 2610416205682618154
+      orange_ball_15: 4396837326760575422
+      orange_ball_16: 2894038039810509503
+      orange_ball_17: -3350964190554870574
+      orange_ball_18: 7650284663156456467
+      orange_ball_19: 7528743020477635012
+      orange_ball_2: 1847125811744931624
+      orange_ball_20: 5758269885243508825
+      orange_ball_21: -3825975559581087412
+      orange_ball_22: 1694413250070692415
+      orange_ball_23: -3597865959049881561
+      orange_ball_24: 8847438822763734389
+      orange_ball_25: 2886816208782137623
+      orange_ball_26: -4432203087776126949
+      orange_ball_27: 6888187310222897208
+      orange_ball_28: -8880335675509088990
+      orange_ball_29: 7687291467454673100
+      orange_ball_3: 8674157099519916565
+      orange_ball_30: 7369528542472232052
+      orange_ball_31: -348536799936185508
+      orange_ball_32: 3318809393500941540
+      orange_ball_33: 8806876846830507245
+      orange_ball_4: 2816838671371102751
+      orange_ball_5: 7889743511161725930
+      orange_ball_6: 2931663636813405533
+      orange_ball_7: -339776596391895880
+      orange_ball_8: 665747920020621891
+      orange_ball_9: -6017532485494152392
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -56,10 +56,11 @@ public class AttackManager : MonoBehaviour
     {
         while (!bossDefeated)
         {
+            
             yield return new WaitForSeconds(2f);
             UpdatePhase();
             if (bossDefeated) yield break;
-
+            
             AttackBlock nextBlock = ChooseBlock();
             yield return StartCoroutine(ExecuteBlock(nextBlock));
             yield return new WaitForSeconds(5f);

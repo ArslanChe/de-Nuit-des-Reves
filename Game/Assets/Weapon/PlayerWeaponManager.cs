@@ -21,6 +21,7 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void Start()
     {
+        //selectedWeaponIndex = 0;
         selectedWeaponIndex = PlayerPrefs.GetInt("SelectedWeaponIndex");
         SetWeapon(selectedWeaponIndex);
     }

@@ -11,7 +11,6 @@ public class Health : MonoBehaviour{
     public float invulnerabilityTime = 6f;
 
     public UnityEvent<int> OnPlayerHealthChange = new UnityEvent<int>();
-    public UnityEvent OnPlayerDeath = new UnityEvent(); 
     private bool canBeDamaged = true;
 
     public void DisableDamage()
@@ -52,7 +51,7 @@ public class Health : MonoBehaviour{
             animator.SetTrigger("death");
             GameStatsManager.AddDeath();
             PlayerPrefs.Save();
-            FindObjectOfType<GameOverMenu>().ShowGameOver();
+            FindAnyObjectByType<GameOverMenu>().ShowGameOver();
 
         } else {
             Invulnerability();

@@ -8,8 +8,10 @@ public class LevelMenu : MonoBehaviour
     public Button[] buttonsNightmare;
     private void Awake()
     {
-        int unlockedLevelSweet = PlayerPrefs.GetInt("unlockedLevelSweet", 1);
-        int unlockedLevelNightmare = PlayerPrefs.GetInt("unlockedLevelNightmare", 1);
+        int unlockedLevelSweet = SaveManager.GetUnlockedLevelSweet();
+        int unlockedLevelNightmare = SaveManager.GetUnlockedLevelNightmare();
+
+
         for (int i = 0; i < buttonsSweet.Length; i++)
         {
             buttonsSweet[i].interactable = false;

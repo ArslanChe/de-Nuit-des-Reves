@@ -11,9 +11,7 @@ public class GameOverMenu : MonoBehaviour
     {
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0f;
-
-        if (playerInput != null)
-            playerInput.DeactivateInput();
+        
     }
 
     public void Retry()
@@ -25,6 +23,6 @@ public class GameOverMenu : MonoBehaviour
     public void LoadLevelMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level Menu");
+        SceneManager.LoadScene("Main menu");
     }
 }

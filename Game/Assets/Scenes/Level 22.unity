@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 29951845}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4717, y: 0.64451, z: 0}
+  m_LocalPosition: {x: 300, y: 160, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -576,7 +576,7 @@ Transform:
   m_GameObject: {fileID: 210812244}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 299.78018, y: 162.4364, z: 0}
+  m_LocalPosition: {x: 300, y: 160, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -631,11 +631,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 219477754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71eb2ecac8932cb42bf35a904576565c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c96fba9cae12bc459933e962e57fd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pauseGameMenu: {fileID: 219477754}
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 1407809127}
 --- !u!1 &220317892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,10 +2118,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 712160806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71eb2ecac8932cb42bf35a904576565c, type: 3}
+  m_Script: {fileID: 11500000, guid: d8582321285ab6148ac02f35ba27ead2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseGameMenu: {fileID: 712160806}
+  gameOverCanvas: {fileID: 712160806}
   playerInput: {fileID: 1407809127}
 --- !u!222 &712160809
 CanvasRenderer:
@@ -2219,7 +2219,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 712160808}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameOverMenu, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -2451,7 +2451,6 @@ GameObject:
   - component: {fileID: 822377252}
   - component: {fileID: 822377251}
   - component: {fileID: 822377250}
-  - component: {fileID: 822377249}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2459,20 +2458,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &822377249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822377248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71eb2ecac8932cb42bf35a904576565c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseGameMenu: {fileID: 0}
-  playerInput: {fileID: 0}
 --- !u!114 &822377250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2530,7 +2515,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2596,7 +2581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 43, y: -0}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &825398500
@@ -2643,8 +2628,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2115309149}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 210812245}
+        m_TargetAssemblyTypeName: VictoryMenu, Assembly-CSharp
         m_MethodName: LoadLevelMenu
         m_Mode: 1
         m_Arguments:
@@ -4088,7 +4073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 496, y: 181.1}
+  m_AnchoredPosition: {x: 458, y: 244}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1464791049
@@ -4219,7 +4204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71, y: -10}
+  m_AnchoredPosition: {x: -130, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586244082
@@ -4307,7 +4292,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -62.348663, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.22454834, y: 0, z: 0, w: 11.988831}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5685,10 +5670,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2115309148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71eb2ecac8932cb42bf35a904576565c, type: 3}
+  m_Script: {fileID: 11500000, guid: e28f2668e3211284591e21e1744e7110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseGameMenu: {fileID: 2115309148}
+  victoryCanvas: {fileID: 2115309148}
   playerInput: {fileID: 1407809127}
 --- !u!224 &2115309150
 RectTransform:
